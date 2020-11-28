@@ -32,12 +32,97 @@ func main() {
 	In general, all methods on a given type should have either
 	value or pointer receivers, but not a mixture of both.
 	 */
-	v := Vert{3,4}
-	var vAbs float64
-	fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
-	v.ScaleVert(5)
-	vAbs = v.AbsVert()
-	fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
+	//v := Vert{3,4}
+	//var vAbs float64
+	//fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
+	//v.ScaleVert(5)
+	//vAbs = v.AbsVert()
+	//fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
+	//interfaceSample()
+	//interfaceImplicit()
+	interfaceValues()
+
+
+}
+
+type If interface {
+	Mf()
+}
+
+type F float64
+
+func (f F) Mf() {
+	fmt.Println(f)
+}
+
+func (t T) Mf() {
+	fmt.Println(t)
+}
+
+func describe(i If) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+func interfaceValues() {
+	var i If
+
+	i = &T{"Hello"}
+	//fmt.Printf("%t %v", i, T{"Hello"})
+	describe(i)
+	i.Mf()
+
+	i = F(math.Pi)
+	describe(i)
+	i.Mf()
+}
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func interfaceImplicit() {
+	var i I = T{"Hello"}
+	i.M()
+}
+
+func interfaceSample() {
+	/*
+		Interfaces
+	*/
+	var a Abser
+	f := MyFloat(-math.Sqrt2)
+	v := Vert{3, 4}
+
+	//a = f
+	// Err: Cannot use type(f) as type(a)
+	// due to MyFloat does not implement Abser
+	a = &v
+
+	//a = v
+	// Err: Cannot use type(Vert) as type Abser
+	fmt.Println(a.AbsVert())
+	fmt.Println(f)
+}
+
+type Abser interface {
+	AbsVert() float64
+}
+
+type MyFloat float64
+
+func (f MyFloat) AbsFloat() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
 }
 
 type Vert struct {
