@@ -42,7 +42,22 @@ func main() {
 	//interfaceImplicit()
 	//interfaceValues()
 	//interfaceNil()
-	emptyInterface()
+	//emptyInterface()
+	typeAssertion()
+
+}
+
+func typeAssertion() {
+	var i interface{} = "Hello"
+
+	fmt.Println(i.(string))
+	s, ok := i.(string)
+	fmt.Println(s, ok)
+
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
+
+	//fmt.Println(i.(int32)) panic
 }
 
 func emptyInterface() {
