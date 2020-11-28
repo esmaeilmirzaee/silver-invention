@@ -43,8 +43,23 @@ func main() {
 	//interfaceValues()
 	//interfaceNil()
 	//emptyInterface()
-	typeAssertion()
+	//typeAssertion()
+	typeSwitch("Hello")
+	typeSwitch(1)
+	typeSwitch(21.98921)
+	typeSwitch(nil)
+	typeSwitch(false)
 
+}
+
+func typeSwitch(a interface{}) {
+	switch a.(type) {
+	case string: fmt.Println("It's string.")
+	case float64: fmt.Println("It's float.")
+	case int: fmt.Println("It's integer.")
+	case bool: fmt.Println("It's boolean.")
+	default: fmt.Println("Check your data.")
+	}
 }
 
 func typeAssertion() {
