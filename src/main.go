@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"time"
 )
 
@@ -49,9 +50,26 @@ func main() {
 	//typeSwitch(21.98921)
 	//typeSwitch(nil)
 	//typeSwitch(false)
-	p := Person{"Esmaeil", 35}
-	fmt.Println(p.stringers())
+	//p := Person{"Esmaeil", 35}
+	//fmt.Println(p.stringers())
+	stringersExercise()
 
+}
+
+type IPAddr [4]byte
+
+func (ip IPAddr)String() string {
+	return fmt.Sprintf("%v.%v.%v.%v", ip[0], ip[1], ip[2], ip[3])
+}
+
+func stringersExercise() {
+	hosts := map[string]IPAddr{
+		"googleDNS": {8,8,8,8},
+		"loopback": {127,0,0,1},
+	}
+	for host, ip := range hosts {
+		fmt.Printf("(Host:%s, IP:%v)", host, ip)
+	}
 }
 
 type Person struct {
