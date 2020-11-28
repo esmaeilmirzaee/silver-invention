@@ -24,10 +24,35 @@ func main() {
 	//v.methodDeclaration()
 	//v.methodDeclarationPtr()
 	
-	v := Vertf{3, 4}
-	v.Scale(10)
-	fmt.Println(v.Abs())
+	//v := Vertf{3, 4}
+	//v.Scale(10)
+	//fmt.Println(v.Abs())
+
+	/*
+	In general, all methods on a given type should have either
+	value or pointer receivers, but not a mixture of both.
+	 */
+	v := Vert{3,4}
+	var vAbs float64
+	fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
+	v.ScaleVert(5)
+	vAbs = v.AbsVert()
+	fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
 }
+
+type Vert struct {
+	X, Y float64
+}
+
+func (v *Vert) ScaleVert(f float64) {
+	v.X = v.X * f
+	v.Y *= f
+}
+
+func (v *Vert) AbsVert() float64 {
+	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+}
+
 
 type Vertf struct {
 	x, y float64
