@@ -58,7 +58,7 @@ func main() {
 	//fmt.Println(errorFunc())
 	//errSqrtExercise()
 	//bufferReader()
-	imagesInterface()
+	//imagesInterface()
 
 }
 
