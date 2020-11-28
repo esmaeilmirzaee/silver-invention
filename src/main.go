@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"image"
 	"io"
 	"math"
 	"strings"
@@ -56,8 +57,15 @@ func main() {
 	//stringersExercise()
 	//fmt.Println(errorFunc())
 	//errSqrtExercise()
-	bufferReader()
+	//bufferReader()
+	imagesInterface()
 
+}
+
+func imagesInterface() {
+	m := image.NewRGBA(image.Rect(0, 0, 100, 100))
+	fmt.Println(m.Bounds())
+	fmt.Println(m.At(0, 0).RGBA())
 }
 
 func bufferReader() {
