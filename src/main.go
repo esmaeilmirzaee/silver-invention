@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"strconv"
 	"time"
 )
 
@@ -52,8 +51,25 @@ func main() {
 	//typeSwitch(false)
 	//p := Person{"Esmaeil", 35}
 	//fmt.Println(p.stringers())
-	stringersExercise()
+	//stringersExercise()
+	fmt.Println(errorFunc())
 
+}
+
+type MyError struct {
+	When time.Time
+	What string
+}
+
+func (e *MyError)Error() string {
+	return fmt.Sprintf("@ %v %s", e.When, e.What)
+}
+
+func errorFunc() error {
+	return &MyError{
+		time.Now(),
+		"It didn't work.",
+	}
 }
 
 type IPAddr [4]byte
