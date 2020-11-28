@@ -23,7 +23,7 @@ func main() {
 	//v := Vertx{1,2}
 	//v.methodDeclaration()
 	//v.methodDeclarationPtr()
-	
+
 	//v := Vertf{3, 4}
 	//v.Scale(10)
 	//fmt.Println(v.Abs())
@@ -40,9 +40,32 @@ func main() {
 	//fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
 	//interfaceSample()
 	//interfaceImplicit()
-	interfaceValues()
+	//interfaceValues()
+	interfaceNil()
 
+}
 
+type In interface {
+	MN()
+}
+
+func (t *T) MN() {
+	if t == nil {
+		fmt.Println("<nil>")
+		return
+	}
+	fmt.Println(t.S)
+}
+
+func interfaceNil() {
+	var i In
+
+	var t *T
+	i = t
+	i.MN()
+
+	i = &T{"Hello"}
+	i.MN()
 }
 
 type If interface {
