@@ -41,7 +41,20 @@ func main() {
 	//interfaceSample()
 	//interfaceImplicit()
 	//interfaceValues()
-	interfaceNil()
+	//interfaceNil()
+	emptyInterface()
+}
+
+func emptyInterface() {
+	var i interface{}
+
+	fmt.Println(i)
+
+	i = 42
+	fmt.Println(i)
+
+	i = "Hello"
+	fmt.Println(i)
 
 }
 
