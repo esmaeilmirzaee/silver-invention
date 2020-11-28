@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"math"
+	"strings"
 	"time"
 )
 
@@ -52,8 +54,42 @@ func main() {
 	//p := Person{"Esmaeil", 35}
 	//fmt.Println(p.stringers())
 	//stringersExercise()
-	fmt.Println(errorFunc())
+	//fmt.Println(errorFunc())
+	//errSqrtExercise()
+	bufferReader()
 
+}
+
+func bufferReader() {
+	r := strings.NewReader("Hello World")
+
+	b := make([]byte, 8)
+	for {
+		n, err := r.Read(b)
+		fmt.Printf("n = %v, err = %v, b = %v\n", n, err, b)
+		fmt.Printf("b[:n] %q\n", b[:n])
+		if err == io.EOF {
+			break
+		}
+	}
+
+}
+
+// TODO
+type ErrNegativeFloat float64
+
+func Sqrt(x float64) (float64, error) {
+	return 0, nil
+}
+
+func (e ErrNegativeFloat) Error() error {
+	//return fmt.Sprintf("Cannot Sqrt negative number: %v", e)
+	return nil
+}
+
+func errSqrtExercise() {
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
 }
 
 type MyError struct {
