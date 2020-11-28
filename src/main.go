@@ -44,12 +44,23 @@ func main() {
 	//interfaceNil()
 	//emptyInterface()
 	//typeAssertion()
-	typeSwitch("Hello")
-	typeSwitch(1)
-	typeSwitch(21.98921)
-	typeSwitch(nil)
-	typeSwitch(false)
+	//typeSwitch("Hello")
+	//typeSwitch(1)
+	//typeSwitch(21.98921)
+	//typeSwitch(nil)
+	//typeSwitch(false)
+	p := Person{"Esmaeil", 35}
+	fmt.Println(p.stringers())
 
+}
+
+type Person struct {
+	Name string
+	Age int
+}
+
+func (p Person) stringers() string {
+	return fmt.Sprintf("%s is %v years old.", p.Name, p.Age)
 }
 
 func typeSwitch(a interface{}) {
