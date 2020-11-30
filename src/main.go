@@ -45,6 +45,15 @@ func main() {
 
 	b = 255
 	fmt.Printf("%08b = %d\n", b, b)
+
+	var (
+		width uint8 = 255
+		height = 255
+	)
+	width++
+	if width < uint8(height) {
+		fmt.Println("How is it possible?")
+	}
 }
 
 func aTourOfGo() {
