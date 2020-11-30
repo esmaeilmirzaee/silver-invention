@@ -55,6 +55,18 @@ func main() {
 		fmt.Println(width, height)
 		fmt.Println("How is it possible?")
 	}
+	var n int8 = math.MaxInt8
+
+	fmt.Println("max integer	:", n)
+	fmt.Println("max integer 	:", n+1)
+
+	n = math.MinInt8
+	fmt.Println("min integer	:", n)
+	fmt.Println("min integer	:", n-1)
+
+	f := float32(math.MaxFloat32)
+	fmt.Println(f*999.5)
+
 }
 
 func aTourOfGo() {
