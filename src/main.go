@@ -4,10 +4,14 @@ import (
 	"fmt"
 	"image"
 	"io"
+	"log"
 	"math"
+	"os"
 	"path"
+	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 func main() {
@@ -15,6 +19,32 @@ func main() {
 	fmt.Printf("%q ->\t %s\n", dir, file)
 	fmt.Println("ratio: ", 3/2)
 	fmt.Printf("%g\n", 100*3.840001000)
+
+	// len vs
+	fmt.Println("Length: ", len("Esmaeil ✓"))
+	fmt.Println("Length Rune: ", utf8.RuneCountInString("Esmaeil ✓"))
+
+	name := "Esmaeil"
+	fmt.Println(strings.ToUpper(name))
+	fmt.Println(strings.Repeat("!", 3))
+	args := os.Args
+	if len(args) < 2 {
+		return
+	}
+	c, err := strconv.Atoi(args[2])
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	r := strings.Repeat(args[3], c)
+	fmt.Println(r, strings.ToUpper(name), r)
+
+	var b byte
+	b = 0
+	fmt.Printf("%08b = %d\n", b, b)
+
+	b = 255
+	fmt.Printf("%08b = %d\n", b, b)
 }
 
 func aTourOfGo() {
