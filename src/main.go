@@ -5,11 +5,19 @@ import (
 	"image"
 	"io"
 	"math"
+	"path"
 	"strings"
 	"time"
 )
 
 func main() {
+	dir, file := path.Split("~/.config/alacritty/alacritty.yml")
+	fmt.Printf("%q ->\t %s\n", dir, file)
+	fmt.Println("ratio: ", 3/2)
+	fmt.Printf("%g\n", 100*3.840001000)
+}
+
+func aTourOfGo() {
 	//structLiterals()
 	//arrays()
 	//sliceLiterals()
@@ -32,9 +40,9 @@ func main() {
 	//fmt.Println(v.Abs())
 
 	/*
-	In general, all methods on a given type should have either
-	value or pointer receivers, but not a mixture of both.
-	 */
+		In general, all methods on a given type should have either
+		value or pointer receivers, but not a mixture of both.
+	*/
 	//v := Vert{3,4}
 	//var vAbs float64
 	//fmt.Printf("After scaling: %+v %v.\n", v, vAbs)
@@ -59,7 +67,10 @@ func main() {
 	//errSqrtExercise()
 	//bufferReader()
 	//imagesInterface()
-
+	//fmt.Println(runtime.NumCPU())
+	fmt.Println(
+		200, 100, -1., -.5, -100, 5,
+	)
 }
 
 func imagesInterface() {
@@ -105,7 +116,7 @@ type MyError struct {
 	What string
 }
 
-func (e *MyError)Error() string {
+func (e *MyError) Error() string {
 	return fmt.Sprintf("@ %v %s", e.When, e.What)
 }
 
@@ -118,14 +129,14 @@ func errorFunc() error {
 
 type IPAddr [4]byte
 
-func (ip IPAddr)String() string {
+func (ip IPAddr) String() string {
 	return fmt.Sprintf("%v.%v.%v.%v", ip[0], ip[1], ip[2], ip[3])
 }
 
 func stringersExercise() {
 	hosts := map[string]IPAddr{
-		"googleDNS": {8,8,8,8},
-		"loopback": {127,0,0,1},
+		"googleDNS": {8, 8, 8, 8},
+		"loopback":  {127, 0, 0, 1},
 	}
 	for host, ip := range hosts {
 		fmt.Printf("(Host:%s, IP:%v)", host, ip)
@@ -134,7 +145,7 @@ func stringersExercise() {
 
 type Person struct {
 	Name string
-	Age int
+	Age  int
 }
 
 func (p Person) stringers() string {
@@ -143,11 +154,16 @@ func (p Person) stringers() string {
 
 func typeSwitch(a interface{}) {
 	switch a.(type) {
-	case string: fmt.Println("It's string.")
-	case float64: fmt.Println("It's float.")
-	case int: fmt.Println("It's integer.")
-	case bool: fmt.Println("It's boolean.")
-	default: fmt.Println("Check your data.")
+	case string:
+		fmt.Println("It's string.")
+	case float64:
+		fmt.Println("It's float.")
+	case int:
+		fmt.Println("It's integer.")
+	case bool:
+		fmt.Println("It's boolean.")
+	default:
+		fmt.Println("Check your data.")
 	}
 }
 
@@ -290,16 +306,15 @@ func (v *Vert) ScaleVert(f float64) {
 }
 
 func (v *Vert) AbsVert() float64 {
-	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
-
 
 type Vertf struct {
 	x, y float64
 }
 
 func (v Vertf) Abs() float64 {
-	return math.Sqrt(v.x * v.x + v.y * v.y)
+	return math.Sqrt(v.x*v.x + v.y*v.y)
 }
 
 func (v *Vertf) Scale(f float64) {
@@ -308,12 +323,11 @@ func (v *Vertf) Scale(f float64) {
 }
 
 func (v *Vertx) methodDeclarationPtr() {
-	fmt.Println(v.Y * 2, v.X * 2)
+	fmt.Println(v.Y*2, v.X*2)
 }
 
-
 func (v Vertx) methodDeclaration() {
-	fmt.Println(v.X * 2, v.Y * 2)
+	fmt.Println(v.X*2, v.Y*2)
 }
 
 func adder() func(int) int {
@@ -337,7 +351,7 @@ func closures() {
 func mutatingMaps() {
 	m := map[string]Verts{
 		"Bell Labs": {46.0912, -98.1223},
-		"Google": {43.91, -100.2309},
+		"Google":    {43.91, -100.2309},
 	}
 	fmt.Println(m["Google"])
 
@@ -424,7 +438,7 @@ func aNilSlice() {
 }
 
 func sliceLenCap() {
-	s := []int{1,2,3,4,5,6,7,8,9,10}
+	s := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	printSlice(s)
 
 	s = s[:]
@@ -442,7 +456,7 @@ func printSlice(s []int) {
 }
 
 func sliceBounds() {
-	s := []int{1,2,3,4,5,6,7,8}
+	s := []int{1, 2, 3, 4, 5, 6, 7, 8}
 	fmt.Println(s)
 
 	s = s[1:6]
@@ -462,8 +476,8 @@ func sliceLiterals() {
 	r := []bool{true, true, true, false, false}
 	fmt.Println(r)
 
-	s := []struct{
-		id int
+	s := []struct {
+		id   int
 		name string
 	}{
 		{1, "Esmaeil"},
@@ -488,7 +502,7 @@ type Vertx struct {
 func structPointer() {
 	v := Vertx{1, 2}
 	p := &v
-	p.X = 1e9 // p.X -> *p.X
+	p.X = 1e9        // p.X -> *p.X
 	fmt.Println(p.X) // p.X -> *p.X
 }
 
@@ -496,7 +510,7 @@ var (
 	v1 = Vertx{2, 3}
 	v2 = Vertx{X: 1}
 	v3 = Vertx{}
-	p = &Vertx{1, 2}
+	p  = &Vertx{1, 2}
 )
 
 func structLiterals() {
