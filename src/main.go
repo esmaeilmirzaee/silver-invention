@@ -52,6 +52,7 @@ func main() {
 	)
 	width++
 	if width < uint8(height) {
+		fmt.Println(width, height)
 		fmt.Println("How is it possible?")
 	}
 }
