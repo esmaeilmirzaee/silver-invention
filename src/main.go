@@ -20,7 +20,7 @@ func main() {
 	fmt.Println("ratio: ", 3/2)
 	fmt.Printf("%g\n", 100*3.840001000)
 
-	// len vs
+	// len vs RuneCountInString
 	fmt.Println("Length: ", len("Esmaeil ✓"))
 	fmt.Println("Length Rune: ", utf8.RuneCountInString("Esmaeil ✓"))
 
@@ -67,6 +67,10 @@ func main() {
 	f := float32(math.MaxFloat32)
 	fmt.Println(f*999.5)
 
+	// Predclared types & underlying types
+	h, _ := time.ParseDuration("5h29m")
+	fmt.Println(h.Hours(), "hours")
+	fmt.Println(int64(h), "ns (hours in nanoseconds)")
 }
 
 func aTourOfGo() {
