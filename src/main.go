@@ -71,6 +71,15 @@ func main() {
 	h, _ := time.ParseDuration("5h29m")
 	fmt.Println(h.Hours(), "hours")
 	fmt.Println(int64(h), "ns (hours in nanoseconds)")
+
+	type gram float64
+	type ounce float64
+
+	var g gram = 10000
+	var o ounce
+
+	o = ounce(g * .035274)
+	fmt.Printf("%g grams is %.2f ounces.\n", g, o)
 }
 
 func aTourOfGo() {
